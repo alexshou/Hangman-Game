@@ -3,30 +3,41 @@
   <head>
     <meta charset="UTF-8">
     <title>Hangman Game</title>
+      <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   </head>
   <body>
-
-    <div>
-    Hangman game, please click any key to get started.
-    (guess a name of NBA teams) <br>
+    
+    <h1> 
+    <br>
+    <br>
+    <br>
+    Guess a NBA team name!
+    </h1>
+    <br>
     <br>
     <br>
 
      Wins:
      <div id = "wins">
-         <br>
+        
      </div>
     
+    <br>
      <div id = "livesLeft">
           <br>
      </div>
+     <br>
+        
+     <div id = "hold">
+     <br>
+     </div>
+     <br>
       Letters already guessed:
      <div id = "guessedLetter"> 
            <br>
      </div>
-     <div id = "hold">
-     <br>
-     </div>
+ 
 
     </div>
 
@@ -42,8 +53,10 @@
     var correctWord = [];
     var guess;
     var guessStored = [];
+    var guessStoredWord;
+    var usedLetter = [];
     var lives;
-    var wins;
+    var wins=0;
     var isOver;
     var space; 
     console.log(teamNames.length);
@@ -60,18 +73,25 @@
       console.log(correctWord);
     }
 
-    lives = 5;
+    lives = 10;
     var showlives = document.getElementById("livesLeft");
+    var usedHolder = document.getElementById("guessedLetter");
+    var winsTotal = document.getElementById("wins");
     // show lives
     comments = function(){
       showlives.innerHTML = "You have " + lives + " lives left!";
-      if(lives < 1)
+      usedHolder.innerHTML = usedLetter;
+      if(lives < 1){
         showlives.innerHTML = "Game over!";
-      if(lives > 0 && isOver){
-        showlives.innerHTML = "You win!"; 
-        wins += 1;
-        document.onkeyup = ""; 
+        document.onkeyup = "";
       }
+
+      if(lives > 0 && isOver){
+        showlives.innerHTML = "You have " + lives + " lives left and You win!"; 
+        wins += 1;
+      }
+
+      winsTotal.innerHTML = wins;
     }
 
    // Create geusses ul
@@ -82,7 +102,8 @@
     for (var i = 0; i < word.length; i++) {
         guessStored.push('_ ');
     }
-    wordHolder.innerHTML = guessStored;
+    guessStoredWord = guessStored.join("");
+    wordHolder.innerHTML = guessStoredWord;
   }
 
  
@@ -94,7 +115,7 @@
         var userGuess = event.key;
         var guessWord;
                // Alerts the key the user pressed (userGuess).
-        alert(userGuess);
+        // alert(userGuess);
 
         if(correctWord.indexOf(userGuess) === -1){
             lives -= 1;
@@ -107,7 +128,8 @@
                 guessStored[i] = word[i];
           }
         }
-        wordHolder.innerHTML = guessStored;
+        guessStoredWord = guessStored.join("");
+        wordHolder.innerHTML = guessStoredWord;
         console.log("guess word is " + guessStored);
 
         guessWord = guessStored.join("");
@@ -121,6 +143,11 @@
         {
 
         }
+        if(usedLetter.indexOf(userGuess) === -1)
+        {
+          usedLetter.push(userGuess);
+        }
+      
         comments();
   }
 
