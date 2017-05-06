@@ -1,4 +1,40 @@
- var teamNames = ['celtics', 'raptors', 'suns', 'nets', 'cavaliers',
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+  </head>
+  <body>
+
+    <div>
+    Hangman game, please click any key to get started.
+    (guess a name of NBA teams) <br>
+    <br>
+    <br>
+
+     Wins:
+     <div id = "wins">
+         <br>
+     </div>
+    
+     <div id = "livesLeft">
+          <br>
+     </div>
+      Letters already guessed:
+     <div id = "guessedLetter"> 
+           <br>
+     </div>
+     <div id = "hold">
+     <br>
+     </div>
+
+    </div>
+
+    <script type="text/javascript">
+    //window onload function
+   // windows.onload = function(){};
+
+    var teamNames = ['celtics', 'raptors', 'suns', 'nets', 'cavaliers',
         'bucks', 'pacers','bulls','pistons','wizard','hawks','heat',
         'hornets','mavericks','jazz','thunders','nuggets','warriors','clippers',
         'grizzles','timberwovles','pelicans','knicks','spurs','lakers'];
@@ -8,6 +44,7 @@
     var guessStored = [];
     var lives;
     var wins;
+    var isOver;
     var space; 
     console.log(teamNames.length);
 
@@ -30,8 +67,11 @@
       showlives.innerHTML = "You have " + lives + " lives left!";
       if(lives < 1)
         showlives.innerHTML = "Game over!";
-      if(lives > 0 && 1)
-        showlives.innerHTML = "";  
+      if(lives > 0 && isOver){
+        showlives.innerHTML = "You win!"; 
+        wins += 1;
+        document.onkeyup = ""; 
+      }
     }
 
    // Create geusses ul
@@ -56,6 +96,12 @@
                // Alerts the key the user pressed (userGuess).
         alert(userGuess);
 
+        if(correctWord.indexOf(userGuess) === -1){
+            lives -= 1;
+        }
+        console.log("lives:" + lives)
+        console.log(correctWord);
+
         for(var i=0; i<word.length; i++){  //"_ _ _ "
           if(userGuess === word[i]){
                 guessStored[i] = word[i];
@@ -64,16 +110,19 @@
         wordHolder.innerHTML = guessStored;
         console.log("guess word is " + guessStored);
 
-        for(var i=0; i<word.length; i++){  //"_ _ _ "
-                guessWord += guessStored[i];
-        }
+        guessWord = guessStored.join("");
         console.log(guessWord);
         if(guessWord === word)
         {
-          alert("You Win!");
+          isOver = true;
           document.onkeyup = " ";
         }
-      }
+        else
+        {
+
+        }
+        comments();
+  }
 
     play();
     result();
@@ -82,4 +131,7 @@
 
     // type function
 
-   
+    </script>
+
+  </body>
+</html>
