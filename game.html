@@ -46,7 +46,7 @@
    // windows.onload = function(){};
 
     var teamNames = ['celtics', 'raptors', 'suns', 'nets', 'cavaliers',
-        'bucks', 'pacers','bulls','pistons','wizard','hawks','heat',
+        'bucks', 'pacers','bulls','pistons','wizards','hawks','heat',
         'hornets','mavericks','jazz','thunders','nuggets','warriors','clippers',
         'grizzles','timberwovles','pelicans','knicks','spurs','lakers'];
     
@@ -66,20 +66,6 @@
       var winsTotal = document.getElementById("wins");
       var wordHolder = document.getElementById('hold');
 
-
-    reset = function(){
-      var word;
-      var correctWord = [];
-      var guess;
-      var guessStored=[];
-      var guessStoredWord;
-      var usedLetter = [];
-      var isOver=0;
-      var space;
-      var lives = 10;
-    }
-
-    reset();
 
     play = function(){
       word = teamNames[Math.floor(Math.random() * teamNames.length)];

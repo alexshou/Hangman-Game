@@ -1,5 +1,5 @@
- var teamNames = ['celtics', 'raptors', 'suns', 'nets', 'cavaliers',
-        'bucks', 'pacers','bulls','pistons','wizard','hawks','heat',
+    var teamNames = ['celtics', 'raptors', 'suns', 'nets', 'cavaliers',
+        'bucks', 'pacers','bulls','pistons','wizards','hawks','heat',
         'hornets','mavericks','jazz','thunders','nuggets','warriors','clippers',
         'grizzles','timberwovles','pelicans','knicks','spurs','lakers'];
     
@@ -14,21 +14,11 @@
       var isOver=0;
       var space;
       var lives = 10;
+      var showlives = document.getElementById("livesLeft");
+      var usedHolder = document.getElementById("guessedLetter");
+      var winsTotal = document.getElementById("wins");
+      var wordHolder = document.getElementById('hold');
 
-
-    reset = function(){
-      var word;
-      var correctWord = [];
-      var guess;
-      var guessStored=[];
-      var guessStoredWord;
-      var usedLetter = [];
-      var isOver=0;
-      var space;
-      var lives = 10;
-    }
-
-    reset();
 
     play = function(){
       word = teamNames[Math.floor(Math.random() * teamNames.length)];
@@ -41,11 +31,9 @@
       console.log(correctWord);
     }
 
-    var showlives = document.getElementById("livesLeft");
-    var usedHolder = document.getElementById("guessedLetter");
-    var winsTotal = document.getElementById("wins");
+
     // show lives
-      comments = function(){
+    comments = function(){
       showlives.innerHTML = "# of guessing remaining: " + lives;
       usedHolder.innerHTML = usedLetter;
       if(lives < 1){
@@ -65,8 +53,7 @@
 
    
    result = function () {
-     var  wordHolder = document.getElementById('hold');
-    
+          
         for (var i = 0; i < word.length; i++) {
         guessStored.push('_ ');
     }
@@ -111,14 +98,16 @@
 
         }
         //store the used letter and display them
-        if(usedLetter.indexOf(userGuess) === -1)
+        if(usedLetter.indexOf(userGuess.toUpperCase()) === -1)
         {
-          usedLetter.push(userGuess);
+          userGuess = userGuess.toUpperCase();
+          usedLetter = usedLetter + " " + userGuess;
+          //usedLetter.push(userGuess);
         }
         comments();
 
         if(0){
-        reset();
+        
         console.log("reset the isOver value to be: " + isOver)
         play();
         result();
