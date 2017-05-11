@@ -1,10 +1,23 @@
-body, h1, #livesLeft, #wins, #guessedLetter{
-	text-align: center;
+body,h1,#box{
+		max-width:100%;
+
 }
 
 body{
+	background:url(https://amhsnewspaper.com/wp-content/uploads/2016/11/logo-nba.jpg);
+	}
+
+body, h1, #box, #livesLeft, #wins, #guessedLetter{
+	text-align: center;
+}
+
+h1{
+	background:#666;
+}
+
+body{
+
 	font-size: 36px;
-	background:#777777;
 }
 
 h1{
@@ -21,4 +34,14 @@ h1{
 
 #guessedLetter{
 	color:orange;
+}
+
+#box{
+	text-align: center;
+	width:600px;
+	border: 2px solid blue;
+	margin:auto;
+	margin-top: 100px;
+	padding: 30px 20px 30px 20px;
+	background:#666;
 }
